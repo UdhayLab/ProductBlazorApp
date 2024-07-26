@@ -1,0 +1,55 @@
+﻿@page "/ProductEdit/{id}"
+@attribute [StreamRendering]
+@inherits ProductEditBase
+@rendermode InteractiveServer
+
+<EditForm Model="@ProductModelForEdit" OnSubmit="HandleValidSubmit" FormName="ProductEditModelForm">    
+     <h3>Edit Product Details</h3>
+     <hr />
+    <div class="form-group row">        
+        <div class="col-sm-10">
+            <label> ProductID : @ProductModelForEdit.ProductId</label>
+        </div>
+    </div>
+     <div class="form-group row">
+        <label for="Name" class="col-sm2 col-form-label">Product Name</label>
+         <div class="col-sm-10">
+            <InputText id="Name" class="form-control" placeholder="Product Name" @bind-Value="ProductModelForEdit.Name"></InputText>            
+         </div>
+     </div>
+    <div class="form-group row">
+        <label for="BrandName" class="col-sm2 col-form-label">BrandName</label>
+        <div class="col-sm-10">
+            <InputText id="BrandName" class="form-control" placeholder="BrandName" @bind-Value="ProductModelForEdit.BrandName"></InputText>            
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Price" class="col-sm2 col-form-label">Price</label>
+        <div class="col-sm-10">
+            <InputNumber id="Price" class="form-control" placeholder="Price" @bind-Value="ProductModelForEdit.Price"></InputNumber>            
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Description" class="col-sm2 col-form-label">Description</label>
+        <div class="col-sm-10">
+            <InputText id="Description" class="form-control" placeholder="Description" @bind-Value="ProductModelForEdit.Description"></InputText>            
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="CategoryId" class="col-sm2 col-form-label">CategoryID</label>
+        <div class="col-sm-10">
+            <InputNumber id="CategoryId" class="form-control" placeholder="categoryID" @bind-Value="ProductModelForEdit.CategoryId"></InputNumber>            
+        </div>
+    </div>
+    <div>
+        <div class="m-3">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        @if (ProductModelForEdit.ProductId > 0)
+        {
+        <button class="btn btn-danger m-2" type="button" @onclick="HandleDelete">Delete</button>
+        }
+    </div>
+</EditForm>
+
+<DeleteConfirm ConfirmationChanged="ConfirmDeleteClick" @ref="DeleteConfirmation"></DeleteConfirm>

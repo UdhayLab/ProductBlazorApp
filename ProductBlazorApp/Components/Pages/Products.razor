@@ -1,0 +1,46 @@
+﻿@page "/Products"
+@attribute [StreamRendering]
+@inherits ProductsBase
+
+<PageTitle>Products</PageTitle>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ProductId</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>BrandName</th>
+            <th>Price</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (productList == null)
+        {
+            <tr>
+                <td><p><em>Loading...</em></p></td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var product in productList)
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.BrandName</td>
+                    <td>@product.Price</td>
+                    <td> <a href="@($"ProductDetails/{product.ProductId}")" class="btn btn-primary ms-1">View/Edit</a> </td>
+                </tr>
+            }
+        }        
+    </tbody>
+</table>
+
+<div>
+    <a class="btn btn-primary ms-3" href="@("ProdcutCreate")">Add Product</a>
+</div>
+
+
+

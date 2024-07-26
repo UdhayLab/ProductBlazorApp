@@ -1,0 +1,33 @@
+﻿@page "/ProductDetails/{id}"
+@attribute [StreamRendering]
+@inherits ProductDetailsBase
+
+<PageTitle>ProductDetails</PageTitle>
+
+@if (ProductDetail == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+<div class="row justify-content-center m-1">
+    <div class="col-sm-10">
+        <div class="card">
+            <div class="card-header">
+                    <h4> @ProductDetail.Name </h4>
+            </div>
+            <div class="card-body text-center">
+                    <h6>Name        :@ProductDetail.Name</h6>
+                    <h6>Description :@ProductDetail.Description</h6>
+                    <h6>BrandName   :@ProductDetail.BrandName</h6>
+                    <h6>Price       :@ProductDetail.Price</h6>
+            </div>
+            <div class="card-footer">
+                    <a href="/Products" class="btn btn-primary"> Back</a>
+                <a href="@($"ProductEdit/{ProductDetail.ProductId}")" class="btn btn-primary"> Edit</a>                
+            </div>
+
+        </div>
+    </div>
+</div>
+}
